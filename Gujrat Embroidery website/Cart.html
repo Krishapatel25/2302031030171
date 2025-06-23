@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart - Gujarat Embroidery</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Quicksand:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: #fff4ec;
+        font-family: "Quicksand", sans-serif;
+        color: #3d1f2b;
+      }
+
+      .navbar {
+        background: linear-gradient(to right, #2c2c54, #4b3869);
+      }
+
+      .navbar .nav-link {
+        color: #ffffff !important;
+        font-weight: 500;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .navbar .nav-link:hover {
+        color: #fcd1d1 !important;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+        padding: 6px 12px;
+      }
+      h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        color: #6b3142;
+        margin: 30px 0;
+        text-align: center;
+        position: relative;
+        display: inline-block;
+      }
+
+      h2::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 0%; /* or 0% if only on hover */
+        height: 3px;
+        background-color: #944e63;
+        transition: width 0.2s ease;
+      }
+
+      h2:hover::after {
+        width: 100%;
+      }
+
+      .cart-item {
+        background: #fff0f0;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        margin-bottom: 20px;
+        padding: 15px;
+      }
+
+      .cart-item img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+
+      .remove-btn {
+        background-color: #944e63;
+        color: white;
+        border: none;
+      }
+
+      .remove-btn:hover {
+        background-color: #6b3142;
+      }
+
+      .total-section {
+        text-align: right;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #6b3142;
+        margin-top: 20px;
+      }
+
+      footer {
+        background: linear-gradient(to right, #fcd1d1, #f6e7d7);
+        color: #4a1c40;
+        padding: 20px 0;
+        text-align: center;
+        font-size: 0.95rem;
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-white" href="#"
+          >Gujarat Embroidery</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="style.html">Styles</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="shop.html">Shop</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="cart.html">Cart</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <section class="container text-center py-5">
+      <div class="container py-5">
+        <h2 class="position-centre mx-auto">Your Cart</h2>
+
+        <div id="cart-items"></div>
+        <div class="total-section" id="total-price"></div>
+      </div>
+    </section>
+    <footer>
+      <p>
+        &copy; 2025 Gujarat Embroidery • Handcrafted with ❤️ by women artisans
+        of Gujarat
+      </p>
+    </footer>
+
+    <script>
+      const imageMap = {
+        "Kutch Shawl":
+          "https://garlandmag.com/wp-content/uploads/2020/01/VANKAR-BHIMJI-KANJI-INDIA-MRROR-STOLE.jpg",
+        "Embroidered Blouse":
+          "https://assets.ajio.com/medias/sys_master/root/20240505/CQe9/66373b8a16fd2c6e6ae9799a/-1117Wx1400H-466637350-red-MODEL3.jpg",
+        "Mirror Work Bag":
+          "https://www.gulabicity.com/thumbnail/300/400/c/images/uploads/2025/May/EC2794/202505050949461.jpg",
+        "Patchwork Cushion":
+          "https://lamansh.in/cdn/shop/products/lamansh-cushion-covers-lamansh-set-of-5-rajasthani-cotton-cushion-cover-embroidery-patchwork-pillow-case-cushion-covers-for-sofa-living-room-cushion-cover-for-haldi-mehendi-wedding-de_720x.jpg?v=1678792128",
+        "Decorative Toran":
+          "https://cdn.exoticindia.com/images/products/thumbnails/t400x300/religious/src17.jpg",
+        "Embroidered Wallet":
+          "https://m.media-amazon.com/images/I/61J3y8AsjZL._AC_UF1000,1000_QL80_.jpg",
+      };
+
+      function loadCart() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const container = document.getElementById("cart-items");
+        const totalDisplay = document.getElementById("total-price");
+        container.innerHTML = "";
+        let total = 0;
+
+        if (cart.length === 0) {
+          container.innerHTML =
+            "<p class='text-center'>Your cart is empty.</p>";
+          totalDisplay.innerHTML = "";
+          return;
+        }
+
+        cart.forEach((item, index) => {
+          total += item.price * item.qty;
+          const imageUrl =
+            imageMap[item.name] || "https://via.placeholder.com/100";
+
+          const itemHTML = `
+          <div class="row cart-item align-items-center">
+            <div class="col-md-2">
+              <img src="${imageUrl}" alt="${item.name}">
+            </div>
+            <div class="col-md-4 text-start">
+              <h5>${item.name}</h5>
+              <p class="mb-1">₹${item.price} x ${item.qty}</p>
+            </div>
+            <div class="col-md-3">
+              <strong>₹${item.price * item.qty}</strong>
+            </div>
+            <div class="col-md-3 text-end">
+              <button class="btn remove-btn btn-sm" onclick="removeItem(${index})">Remove</button>
+            </div>
+          </div>
+        `;
+          container.innerHTML += itemHTML;
+        });
+
+        totalDisplay.innerHTML = `Total: ₹${total}`;
+      }
+
+      function removeItem(index) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        loadCart();
+      }
+
+      loadCart();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

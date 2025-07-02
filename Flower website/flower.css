@@ -1,0 +1,152 @@
+/* === Theme Colors === */
+.bg-pink {
+  background-color: #c4567c;
+}
+.text-pink {
+  color: #c4567c;
+}
+/* === Navbar Hover Effect === */
+.navbar-nav .nav-link {
+  color: white;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  position: relative;
+}
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: #ffd9e5;
+}
+.navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: #ffd9e5;
+  transition: 0.3s;
+}
+.navbar-nav .nav-link:hover::after {
+  width: 60%;
+  left: 20%;
+}
+
+
+/* === Buttons === */
+.btn-pink {
+  background-color: #c4567c;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+.btn-pink:hover {
+  background-color: #a93b61;
+}
+
+/* === Hero Section === */
+.hero {
+  background-color: #fff4f7;
+  min-height: 90vh;
+}
+.hero-text h1 {
+  font-size: 3rem;
+  color: #a93b61;
+  font-weight: bold;
+}
+.hero-text .highlight {
+  color: #c4567c;
+}
+.hero-image img {
+  max-width: 500px;
+}
+
+/* === Section Title (Underline & Hover) === */
+.section-title {
+  position: relative;
+  display: inline-block;
+  color: #c4567c;
+  font-weight: bold;
+  font-size: 2rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60%;
+  margin: 5px auto 0;
+  height: 3px;
+  background-color: #a93b61;
+  border-radius: 2px;
+}
+.section-title:hover {
+  color: #a93b61;
+  transform: scale(1.05);
+}
+
+    .text-pink {
+      color: #a93b61;
+    }
+    .btn-pink {
+      background-color: #d63384;
+      color: white;
+      border: none;
+    }
+    .btn-pink:hover {
+      background-color: #b0246c;
+    }
+    .card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      transition: 0.3s ease;
+    }
+    .custom-header {
+      background-color: #fff0f5;
+    }
+  
+
+/* === Gallery Card === */
+.custom-header {
+  background-color: #ffe6ef; /* light pink */
+}
+.gallery-card {
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(196, 86, 124, 0.3);
+  transition: transform 0.3s ease;
+}
+.gallery-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  border-radius: 15px;
+}
+.gallery-card:hover {
+  transform: translateY(-5px);
+}
+.gallery-card:hover img {
+  transform: scale(1.05);
+}
+
+
+
+/* === About Section === */
+.about-header {
+  background-color: #ffe6ef;
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about-section {
+  background-color: #fff0f5;
+  padding: 3rem 1rem;
+  border-radius: 20px;
+}
+.text-pink {
+  color: #c4567c;
+}
+

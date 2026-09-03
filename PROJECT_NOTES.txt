@@ -1,0 +1,5 @@
+TRUTHGUARD AI FRONTEND
+Theme: Purple + White
+Stack: React + Vite + React Router + Lucide Icons + CSS
+Backend: Not connected (frontend mock analysis)
+Main routes: / /detector /pricing /about /how-it-works /login
